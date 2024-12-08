@@ -45,7 +45,7 @@ const Header = () => {
             <IoMdContact className="w-[23px] h-[18px] scale-[2]" />
             <CiSearch className="scale-100" />
             <CiHeart className="scale-100" />
-            <Link href="/cart"><button onClick={ToggleCart}>{cartClick ? <IoClose />  : <BsCart3/>}</button></Link>
+           <button onClick={ToggleCart}>{cartClick ? <IoClose />  : <BsCart3/>}</button>
           </div>
       
           <div className="lg:hidden flex justify-center items-center">
