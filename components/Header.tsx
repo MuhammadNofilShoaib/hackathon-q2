@@ -20,9 +20,11 @@ const Header = () => {
 
     const ToogleMenu = () => {
         setClick(!click);
+        if (cartClick) setCartClick(false); 
       }
     const ToggleCart = () => {
       setCartClick(!cartClick);
+      if (click) setClick(false);
     }
   
 
@@ -31,26 +33,26 @@ const Header = () => {
         <div className="flex justify-between items-center px-[20px] md:px-[54px] py-[29px] ">
           <div className="flex items-center gap-[5px]">
             <Image src="/logo.png" alt="logo" width={50} height={32} />
-            <h1 className="font-[700] text-[34px] text-[#000000] capitalize">Furniro</h1>
+            <Link href="/" className="font-[700] text-[34px] text-[#000000] capitalize">Furniro</Link>
           </div>
       
           <div className="hidden lg:flex gap-[75px]">
-            <Link href="/" className="capitalize font-[500] text-[16px] text-black leading-[24px]">Home</Link>
-            <Link href="/shop" className="capitalize font-[500] text-[16px] text-black leading-[24px]">Shop</Link>
-            <Link href="/blog" className="capitalize font-[500] text-[16px] text-black leading-[24px]">Blog</Link>
-            <Link href="/contact" className="capitalize font-[500] text-[16px] text-black leading-[24px]">Contact</Link>
+            <Link href="/" className="capitalize font-[500] text-[16px] text-black leading-[24px] hover:-translate-y-1 hover:underline underline-offset-2 duration-300 ease-in-out">Home</Link>
+            <Link href="/shop" className="capitalize font-[500] text-[16px] text-black leading-[24px] hover:-translate-y-1 hover:underline underline-offset-2 duration-300 ease-in-out">Shop</Link>
+            <Link href="/blog" className="capitalize font-[500] text-[16px] text-black leading-[24px] hover:-translate-y-1 hover:underline underline-offset-2 duration-300 ease-in-out">Blog</Link>
+            <Link href="/contact" className="capitalize font-[500] text-[16px] text-black leading-[24px] hover:-translate-y-1 hover:underline underline-offset-2 duration-300 ease-in-out">Contact</Link>
           </div>
       
           <div className="hidden md:flex items-center gap-[45px]">
-            <IoMdContact className="w-[23px] h-[18px] scale-[2]" />
-            <CiSearch className="scale-100" />
-            <CiHeart className="scale-100" />
-           <button onClick={ToggleCart}>{cartClick ? <IoClose />  : <BsCart3/>}</button>
+            <IoMdContact className="w-[23px] h-[18px] scale-[2] hover:text-orange-400 ease-in-out duration-300" />
+            <CiSearch className="scale-100 hover:text-orange-400 ease-in-out duration-300" />
+            <CiHeart className="scale-100 hover:text-orange-400 ease-in-out duration-300" />
+           <button onClick={ToggleCart}>{cartClick ? <IoClose className='hover:text-red-700 ease-in-out duration-300' />  : <BsCart3 className='hover:text-orange-400 ease-in-out duration-300'/>}</button>
           </div>
       
           <div className="lg:hidden flex justify-center items-center">
             <button onClick={ToogleMenu}>
-              {click ? <IoClose /> : <FiAlignRight/>}
+              {click ? <IoClose className='hover:text-red-600 ease-in-out duration-300' /> : <FiAlignRight className='hover:text-orange-400 ease-in-out duration-300'/>}
             </button>
           </div>
         </div>
@@ -58,7 +60,7 @@ const Header = () => {
         <div
           className={`${
             click ? "opacity-100" : "opacity-0"
-          } ease-in-out duration-300 flex flex-col justify-center items-center gap-5 absolute top-[80px] p-3 bg-white rounded-md border border-black/50 w-full lg:hidden`}
+          } ease-in-out duration-300 flex flex-col justify-center items-center gap-5 absolute top-[80px] p-3 bg-white rounded-md border border-black/50 w-full lg:hidden z-40`}
         >
           <Link href="/" className="capitalize font-[500] text-[16px] text-black leading-[24px]">Home</Link>
           <Link href="/shop" className="capitalize font-[500] text-[16px] text-black leading-[24px]">Shop</Link>
@@ -68,7 +70,7 @@ const Header = () => {
 
         </div>
 
-        <div className={`hidden md:flex flex-col justify-start items-start gap-[24px] ${cartClick ? "opacity-100" : "opacity-0"} ease-in-out duration-300 absolute z-50 bg-white w-[417px] h-[746px] lg:left-[570px] md:left-[320px] px-[23px] py-[28px]`}>
+        <div className={`hidden md:flex flex-col justify-start items-start gap-[24px] ${cartClick ? "opacity-100" : "opacity-0"} ease-in-out duration-300 absolute z-50 bg-white w-[417px] h-[746px] right-6 2xl:right-auto  px-[23px] py-[28px] shadow-2xl shadow-black/35`}>
           <div className="flex justify-between items-center w-[350px]">
             <h1 className="font-[600] text-[24px] leading-[36px] text-black">Shopping Cart</h1>
             <button onClick={ToggleCart} className="flex justify-center items-center font-bold text-2xl"><IoClose /></button>
