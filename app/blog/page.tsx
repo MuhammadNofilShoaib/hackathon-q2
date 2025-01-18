@@ -5,8 +5,7 @@ import { SlCalender } from "react-icons/sl";
 import { HiBookmark } from "react-icons/hi2";
 import { SlArrowRight } from "react-icons/sl";
 import { CiSearch } from "react-icons/ci";
-
-
+import Link from 'next/link';
 
 const page = () => (
     <div className='max-w-[1440px] mx-auto'>
@@ -15,7 +14,7 @@ const page = () => (
             <Image src="/logo.png" alt="logo" width={77} height={77} />
             <h1 className='font-[500] text-[48px] leading-[72px] text-black'>Blog</h1>
             <div className="flex justify-center items-center gap-1">
-                <h1 className='font-[500] text-[16px] leading-6 text-black'>Home</h1>
+                <Link href="/" className='font-[500] text-[16px] leading-6 text-black hover:underline underline-offset-4'>Home</Link>
                 <h1 className='flex justify-center items-center'><SlArrowRight className='scale-90' /></h1>
                 <h1 className='font-[300] text-[16px] leading-6 text-black'>Blog</h1>
             </div>

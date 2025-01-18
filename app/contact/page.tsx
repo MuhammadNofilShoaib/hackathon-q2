@@ -8,6 +8,7 @@ import { GrTrophy } from "react-icons/gr";
 import { GoVerified } from "react-icons/go";
 import { FaShippingFast } from "react-icons/fa";
 import { RiCustomerService2Fill } from "react-icons/ri";
+import Link from 'next/link';
 
 const page = () => {
     return (
@@ -17,7 +18,7 @@ const page = () => {
                 <Image src="/logo.png" alt="logo" width={77} height={77} />
                 <h1 className="font-[500] text-[36px] sm:text-[48px] leading-[54px] sm:leading-[72px] text-black text-center">Contact</h1>
                 <div className="flex justify-center items-center gap-1 text-center">
-                    <h1 className="font-[500] text-[14px] sm:text-[16px] leading-6 text-black">Home</h1>
+                <Link href="/" className='font-[500] text-[16px] leading-6 text-black hover:underline underline-offset-4'>Home</Link>
                     <h1 className="flex justify-center items-center">
                         <SlArrowRight className="scale-90" />
                     </h1>

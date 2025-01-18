@@ -5,7 +5,7 @@ const Footer = () => {
     <div className='h-[505px] max-w-[1440px] mx-auto border-t border-black/20'>
         <div className="flex flex-col lg:flex-row justify-between items-start bg-white pt-[48px] pb-[36px] mx-5 md:mx-[100px]">
             <div className="flex flex-col justify-start items-start text-start gap-[50px]">
-                <h1 className='font-[700] text-[24px] leading-[36px] text-black'>Funiro.</h1>
+                <h1 className='font-[700] text-[24px] leading-[36px] text-black'>FurniAura.</h1>
                 <h1 className='font-[400] text-[16px] leading-[24px] text-[#9F9F9F]'>400 University Drive Suite 200 Coral <br /> Gables,<br />
                 FL 33134 USA</h1>
 
@@ -41,7 +41,7 @@ const Footer = () => {
         </div>
         <hr className='mx-5 md:mx-[100px]' />
         <div className="flex justify-start items-center my-[35px] mx-5 md:mx-[100px]">
-            <h1 className='font-[400] text-[16px] leading-[24px]'>2023 furino. All rights reverved</h1>
+            <h1 className='font-[400] text-[16px] leading-[24px]'>2023 FurniAura. All rights reverved</h1>
         </div>
       
     </div>
