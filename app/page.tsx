@@ -18,6 +18,8 @@ export default function Home() {
 
   console.log(cart); 
 
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
     <div className="max-w-[1440px] mx-[20px] md:mx-auto overflow-hidden">
 
@@ -59,8 +61,17 @@ export default function Home() {
       <div className="flex flex-col justify-center items-center gap-[62.5px] mb-[56.6px]">
         <h1 className="font-[700] text-[40px] leading-[48px] text-[#3A3A3A]">Our Products</h1>
         <div className="">
+
+        <input
+      type="text"
+      placeholder="Search products..."
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      className="w-full p-2 border border-black/40 rounded-md mb-[56.6px] mx-"
+    />
+
           <div className="">
-            <Item />
+            <Item searchQuery={searchQuery} />
           </div>
           
         </div>

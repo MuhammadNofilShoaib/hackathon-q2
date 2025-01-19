@@ -197,6 +197,12 @@ const Page = ({ params }: PageProps) => {
 
             <hr className='my-[56.6px]' />
 
+            <div className="flex justify-center items-center mb-[56.6px]">
+            <Link href="/shop" className="w-56 lg:w-[318px] h-[64px] rounded-[15px] border-[1px] border-black/40 font-[400] text-[20px] leading-[30px] text-black/70 hover:text-white hover:bg-black duration-300 ease-in-out flex justify-center items-center">
+                Shop more...
+            </Link>
+            </div>
+
 
 
 

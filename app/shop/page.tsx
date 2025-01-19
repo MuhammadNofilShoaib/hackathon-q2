@@ -1,4 +1,6 @@
-import React from 'react'
+"use client";
+import { CiSearch } from "react-icons/ci";
+import React, { useState } from 'react'
 import { SlArrowRight } from "react-icons/sl";
 import Item from '@/components/Item';
 import { GrTrophy } from "react-icons/gr";
@@ -7,24 +9,38 @@ import { FaShippingFast } from "react-icons/fa";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import Link from 'next/link';
 
-const page = () => (
-    <div className='max-w-[1440px] mx-auto'>
-        <div className="flex flex-col justify-center items-center bg-[url('/image5.png')] w-screen custom:w-[1440px] h-[316px] mb-[56.6px]">
-            <h1 className='font-[500] text-[48px] leading-[72px] text-black'>Shop</h1>
-            <div className="flex justify-center items-center gap-1">
-                <Link href="/" className='font-[500] text-[16px] leading-6 text-black hover:underline underline-offset-4'>Home</Link>
-                <h1 className='flex justify-center items-center'><SlArrowRight className='scale-90' /></h1>
-                <h1 className='font-[300] text-[16px] leading-6 text-black'>Shop</h1>
-            </div>
-        </div>
+function page() {
 
-        
+    const [searchQuery, setSearchQuery] = useState('');
 
-        <div className="">
-            <Item />
-            <Item />
-            <Item />
-        </div>
+  return (
+    <div className="max-w-[1440px] mx-auto">
+    <div className="flex flex-col justify-center items-center bg-[url('/image5.png')] w-screen custom:w-[1440px] h-[316px] mb-[56.6px]">
+      <h1 className="font-[500] text-[48px] leading-[72px] text-black">Shop</h1>
+      <div className="flex justify-center items-center gap-1">
+        <Link href="/" className="font-[500] text-[16px] leading-6 text-black hover:underline underline-offset-4">
+          Home
+        </Link>
+        <h1 className="flex justify-center items-center">
+          <SlArrowRight className="scale-90" />
+        </h1>
+        <h1 className="font-[300] text-[16px] leading-6 text-black">Shop</h1>
+      </div>
+    </div>
+
+   <div className="flex justify-center items-center mx-5">
+     <input
+      type="text"
+      placeholder="Search products..."
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      className="w-full p-2 border border-black/40 rounded-md mb-[56.6px]"
+    />
+   </div>
+
+    <div className="">
+      <Item searchQuery={searchQuery} />
+    </div>
 
         <div className="flex justify-center items-end gap-[10px] md:gap-[38px] mb-[56.6px]">
             <Link href="/shop" className="size-[40px] md:size-[60px] flex justify-center items-center text-[20px] font-[400] leading-[30px] text-black bg-[#F9F1E7] hover:bg-[#B88E2F] hover:text-white duration-300 ease-in-out rounded-[10px]">1</Link>
@@ -71,6 +87,8 @@ const page = () => (
             </div>
         </div>
     </div>
-)
+  )
+}
 
 export default page
+
