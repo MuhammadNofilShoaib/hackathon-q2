@@ -1,5 +1,4 @@
 "use client";
-import { CiSearch } from "react-icons/ci";
 import React, { useState } from 'react'
 import { SlArrowRight } from "react-icons/sl";
 import Item from '@/components/Item';
@@ -9,7 +8,7 @@ import { FaShippingFast } from "react-icons/fa";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import Link from 'next/link';
 
-function page() {
+function Page() {
 
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -90,5 +89,5 @@ function page() {
   )
 }
 
-export default page
+export default Page
 
