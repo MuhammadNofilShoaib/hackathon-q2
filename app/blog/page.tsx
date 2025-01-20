@@ -11,7 +11,7 @@ const page = () => (
     <div className='max-w-[1440px] mx-auto'>
 
         <div className="flex flex-col justify-center items-center bg-[url('/image5.png')] w-screen custom:w-[1440px] h-[316px]">
-            <Image src="/logo.png" alt="logo" width={77} height={77} />
+            <Image src="/logo.png" alt="logo" width={77} height={77} loading="lazy"/>
             <h1 className='font-[500] text-[48px] leading-[72px] text-black'>Blog</h1>
             <div className="flex justify-center items-center gap-1">
                 <Link href="/" className='font-[500] text-[16px] leading-6 text-black hover:underline underline-offset-4'>Home</Link>
@@ -25,7 +25,7 @@ const page = () => (
             <div className="flex flex-col justify-center items-center gap-[56.6px]">
 
                 <div className="flex flex-col justify-start items-start gap-[20px]">
-                    <Image src="/blog1.png" alt='blog1' width={817} height={500}></Image>
+                    <Image src="/blog1.png" alt='blog1' width={817} height={500} loading="lazy"></Image>
 
                     <div className="flex justify-start items-center gap-[30px]">
                         <div className="flex justify-center items-center gap-[18px]">
@@ -51,7 +51,7 @@ const page = () => (
                 </div>
 
                 <div className="flex flex-col justify-start items-start gap-[20px]">
-                    <Image src="/blog2.png" alt='blog2' width={817} height={500}></Image>
+                    <Image src="/blog2.png" alt='blog2' width={817} height={500} loading="lazy"></Image>
 
                     <div className="flex justify-start items-center gap-[30px]">
                         <div className="flex justify-center items-center gap-[18px]">
@@ -77,7 +77,7 @@ const page = () => (
                 </div>
 
                 <div className="flex flex-col justify-start items-start gap-[20px]">
-                    <Image src="/blog3.png" alt='blog3' width={817} height={500}></Image>
+                    <Image src="/blog3.png" alt='blog3' width={817} height={500} loading="lazy"></Image>
 
                     <div className="flex justify-start items-center gap-[30px]">
                         <div className="flex justify-center items-center gap-[18px]">
@@ -147,7 +147,7 @@ const page = () => (
                     <div className="flex justify-between items-center gap-[24px] w-[252px]">
 
                         <div className="flex justify-center items-center rounded-[10px]">
-                            <Image src="/blog3.png" alt='blog' width={80} height={80} className='w-[80px] h-[80px] rounded-[10px] object-cover'></Image>
+                            <Image src="/blog3.png" alt='blog' width={80} height={80} className='w-[80px] h-[80px] rounded-[10px] object-cover' loading="lazy"></Image>
                         </div>
 
                         <div className="flex flex-col justify-start items-start gap-3">
@@ -160,7 +160,7 @@ const page = () => (
                     <div className="flex justify-between items-center gap-[24px] w-[252px]">
 
                         <div className="flex justify-center items-center rounded-[10px]">
-                            <Image src="/blog3.png" alt='blog' width={80} height={80} className='w-[80px] h-[80px] rounded-[10px] object-cover'></Image>
+                            <Image src="/blog3.png" alt='blog' width={80} height={80} className='w-[80px] h-[80px] rounded-[10px] object-cover' loading="lazy"></Image>
                         </div>
 
                         <div className="flex flex-col justify-start items-start gap-3">
@@ -173,7 +173,7 @@ const page = () => (
                     <div className="flex justify-between items-center gap-[24px] w-[252px]">
 
                         <div className="flex justify-center items-center rounded-[10px]">
-                            <Image src="/blog3.png" alt='blog' width={80} height={80} className='w-[80px] h-[80px] rounded-[10px] object-cover'></Image>
+                            <Image src="/blog3.png" alt='blog' width={80} height={80} className='w-[80px] h-[80px] rounded-[10px] object-cover' loading="lazy"></Image>
                         </div>
 
                         <div className="flex flex-col justify-start items-start gap-3">
@@ -186,7 +186,7 @@ const page = () => (
                     <div className="flex justify-between items-center gap-[24px] w-[252px]">
 
                         <div className="flex justify-center items-center rounded-[10px]">
-                            <Image src="/blog3.png" alt='blog' width={80} height={80} className='w-[80px] h-[80px] rounded-[10px] object-cover'></Image>
+                            <Image src="/blog3.png" alt='blog' width={80} height={80} className='w-[80px] h-[80px] rounded-[10px] object-cover' loading="lazy"></Image>
                         </div>
 
                         <div className="flex flex-col justify-start items-start gap-3">
@@ -199,7 +199,7 @@ const page = () => (
                     <div className="flex justify-between items-center gap-[24px] w-[252px]">
 
                         <div className="flex justify-center items-center rounded-[10px]">
-                            <Image src="/blog3.png" alt='blog' width={80} height={80} className='w-[80px] h-[80px] rounded-[10px] object-cover'></Image>
+                            <Image src="/blog3.png" alt='blog' width={80} height={80} className='w-[80px] h-[80px] rounded-[10px] object-cover' loading="lazy"></Image>
                         </div>
 
                         <div className="flex flex-col justify-start items-start gap-3">

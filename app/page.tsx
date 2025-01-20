@@ -43,15 +43,15 @@ export default function Home() {
 
         <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-1 gap-[20px]">
           <div className="flex flex-col justify-center items-center gap-[30px]">
-            <Image src="/sub1.png" alt="image" width={381} height={480} className=""></Image>
+            <Image loading="lazy" src="/sub1.png" alt="image" width={381} height={480} className=""></Image>
             <h1 className="font-[600] text-[24px] leading-[36px] text-center">Dining</h1>
           </div>
           <div className="flex flex-col justify-center items-center gap-[30px]">
-            <Image src="/sub2.png" alt="image" width={381} height={480} className=""></Image>
+            <Image loading="lazy" src="/sub2.png" alt="image" width={381} height={480} className=""></Image>
             <h1 className="font-[600] text-[24px] leading-[36px] text-center">Living</h1>
           </div>
           <div className="flex flex-col justify-center items-center gap-[30px]">
-            <Image src="/sub3.png" alt="image" width={381} height={480} className=""></Image>
+            <Image loading="lazy" src="/sub3.png" alt="image" width={381} height={480} className=""></Image>
             <h1 className="font-[600] text-[24px] leading-[36px] text-center">Bedroom</h1>
           </div>
         </div>
@@ -121,7 +121,7 @@ export default function Home() {
           <h1 className="text-[#3A3A3A] font-[700] text-[40px] text-center leading-[48px] ">#FurniAuraFurniture </h1>
         </div>
         <div className="flex justify-center items-center">
-          <Image src="/image2.png" alt="image2" width={1799} height={721} className="w-screen custom:w-[1799px]"></Image>
+          <Image loading="lazy" src="/image2.png" alt="image2" width={1799} height={721} className="w-screen custom:w-[1799px]"></Image>
         </div>
       </div>
 

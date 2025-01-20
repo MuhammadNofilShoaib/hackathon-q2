@@ -100,22 +100,22 @@ const Page = ({ params }: PageProps) => {
                 <div className="flex flex-col md:flex-row justify-center items-start gap-[32px]">
                     <div className="grid grid-cols-2 md:grid-cols-1 justify-center items-center gap-[32px] lg:hidden xl:grid">
                         <div className="flex justify-center items-center bg-[#F9F1E7] w-[76px] h-[80px] rounded-[10px]">
-                            <Image src={urlFor(productData.productImage).url()} alt={productData.title} width={83} height={55} className='rounded-lg w-full h-full object-cover'></Image>
+                            <Image loading="lazy" src={urlFor(productData.productImage).url()} alt={productData.title} width={83} height={55} className='rounded-lg w-full h-full object-cover'></Image>
                         </div>
 
                         <div className="flex justify-center items-center bg-[#F9F1E7] w-[76px] h-[80px] rounded-[10px]">
-                            <Image src={urlFor(productData.productImage).url()} alt={productData.title} width={83} height={55} className='rounded-lg w-full h-full object-cover'></Image>
+                            <Image loading="lazy" src={urlFor(productData.productImage).url()} alt={productData.title} width={83} height={55} className='rounded-lg w-full h-full object-cover'></Image>
                         </div>
                         <div className="flex justify-center items-center bg-[#F9F1E7] w-[76px] h-[80px] rounded-[10px]">
-                            <Image src={urlFor(productData.productImage).url()} alt={productData.title} width={83} height={55} className='rounded-lg w-full h-full object-cover'></Image>
+                            <Image loading="lazy" src={urlFor(productData.productImage).url()} alt={productData.title} width={83} height={55} className='rounded-lg w-full h-full object-cover'></Image>
                         </div>
                         <div className="flex justify-center items-center bg-[#F9F1E7] w-[76px] h-[80px] rounded-[10px]">
-                            <Image src={urlFor(productData.productImage).url()} alt={productData.title} width={83} height={55} className='rounded-lg w-full h-full object-cover'></Image>
+                            <Image loading="lazy" src={urlFor(productData.productImage).url()} alt={productData.title} width={83} height={55} className='rounded-lg w-full h-full object-cover'></Image>
                         </div>
                     </div>
 
                     <div className="md:flex justify-center items-center bg-[#F9F1E7] h-[500px] w-[423px] rounded-[10px] hidden">
-                        <Image src={urlFor(productData.productImage).url()} alt={productData.title} width={481} height={391} className='rounded-lg w-full h-full object-cover'></Image>
+                        <Image loading="lazy" src={urlFor(productData.productImage).url()} alt={productData.title} width={481} height={391} className='rounded-lg w-full h-full object-cover'></Image>
                     </div>
                 </div>
 
@@ -201,10 +201,10 @@ const Page = ({ params }: PageProps) => {
 
                 <div className="flex justify-center gap-[37px] items-center">
                     <div className="bg-[#f9f1e7] rounded-[10px] w-[605px]">
-                        <Image src={urlFor(productData.productImage).url()} alt={productData.title} width={605} height={348} className='w-full h-full object-cover rounded-lg'></Image>
+                        <Image loading="lazy" src={urlFor(productData.productImage).url()} alt={productData.title} width={605} height={348} className='w-full h-full object-cover rounded-lg'></Image>
                     </div>
                     <div className="bg-[#f9f1e7] rounded-[10px] w-[605px]">
-                        <Image src={urlFor(productData.productImage).url()} alt={productData.title} width={605} height={348} className='w-full h-full object-cover rounded-lg saturate-200'></Image>
+                        <Image loading="lazy" src={urlFor(productData.productImage).url()} alt={productData.title} width={605} height={348} className='w-full h-full object-cover rounded-lg saturate-200'></Image>
                     </div>
                 </div>
 

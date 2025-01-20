@@ -15,7 +15,7 @@ const page = () => {
         <div className='max-w-[1440px] mx-auto'>
 
             <div className="flex flex-col justify-center items-center bg-[url('/image5.png')] w-full custom:w-[1440px] h-[316px] mb-[98px] px-4 sm:px-8">
-                <Image src="/logo.png" alt="logo" width={77} height={77} />
+                <Image loading="lazy" src="/logo.png" alt="logo" width={77} height={77} />
                 <h1 className="font-[500] text-[36px] sm:text-[48px] leading-[54px] sm:leading-[72px] text-black text-center">Contact</h1>
                 <div className="flex justify-center items-center gap-1 text-center">
                 <Link href="/" className='font-[500] text-[16px] leading-6 text-black hover:underline underline-offset-4'>Home</Link>

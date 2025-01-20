@@ -114,7 +114,7 @@ export default function CartPage() {
     return (
         <div className="max-w-[1440px] mx-auto overflow-hidden">
             <div className="flex flex-col justify-center items-center bg-[url('/image5.png')] w-full custom:w-[1440px] h-[316px]">
-                <Image src="/logo.png" alt="logo" width={77} height={77} />
+                <Image loading="lazy" src="/logo.png" alt="logo" width={77} height={77} />
                 <h1 className="font-[500] text-[48px] leading-[72px] text-black text-center">Cart</h1>
                 <div className="flex justify-center items-center gap-1 text-center">
                     <Link href="/" className='font-[500] text-[16px] leading-6 text-black hover:underline underline-offset-4'>Home</Link>
@@ -142,7 +142,7 @@ export default function CartPage() {
                                     {cartItems.map((item) => (
                                         <tr key={item._id} className="border-t">
                                             <td className="flex flex-col md:flex-row items-start md:items-center gap-2 px-2 sm:px-4 lg:px-[30px] py-4">
-                                                <Image
+                                                <Image loading="lazy"
                                                     src={urlFor(item.productImage).url()}
                                                     alt={item.title}
                                                     width={70}

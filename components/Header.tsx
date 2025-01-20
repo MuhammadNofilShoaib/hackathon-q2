@@ -23,7 +23,7 @@ const Header = () => {
     <div className="md:h-[100px] bg-white max-w-[1440px] mx-auto font-sans text-4xl overflow-hidden">
       <div className="flex justify-between items-center px-[20px] md:px-[54px] py-[29px] ">
         <div className="flex items-center gap-[5px]">
-          <Image src="/logo.png" alt="logo" width={50} height={32} />
+          <Image loading="lazy" src="/logo.png" alt="logo" width={50} height={32} />
           <Link href="/" className="font-[700] text-[34px] text-[#000000] capitalize">FurniAura</Link>
         </div>
 

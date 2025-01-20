@@ -48,7 +48,7 @@ const Item: React.FC<ItemProps> = ({ searchQuery }) => {
                 setSanityData(data);
             } catch (error) {
                 console.error("Failed to fetch products:", error);
-                setError("Unable to load products. Please try again later.");
+                setError("Unable to load products. Please Reload or try again later.");
             } finally {
                 setLoading(false);
             }
@@ -98,6 +98,7 @@ const Item: React.FC<ItemProps> = ({ searchQuery }) => {
                                                 width={285}
                                                 height={301}
                                                 className="w-full h-full object-cover"
+                                                loading="lazy"
                                             />
                                         </div>
 
