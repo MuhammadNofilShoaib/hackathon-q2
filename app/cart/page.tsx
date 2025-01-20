@@ -125,7 +125,7 @@ export default function CartPage() {
                 </div>
             </div>
 
-            <div className="flex flex-col custom:flex-row justify-between items-start lg:items-center custom:items-start mx-4 lg:mx-[100px] lg:gap-5 my-[56px] gap-8 xl:gap-0">
+            <div className="flex flex-col custom:flex-row justify-between items-start lg:items-center custom:items-start mx-4 lg:mx-[100px] lg:gap-5 my-[56px] gap-8">
                 <div className="flex flex-col justify-start items-center gap-[56px] w-full lg:w-auto">
                     {cartItems.length > 0 ? (
                         <div className="overflow-x-auto w-full">
