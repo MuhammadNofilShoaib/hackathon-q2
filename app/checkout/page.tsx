@@ -22,24 +22,24 @@ interface Product {
 
 const Page = () => {
     const [sanityData, setSanityData] = useState<Product[]>([]);
-    const [cartItems, setCartItems] = useState<Product[]>([]);
+    const [cartItems, setCartItems] = useState<(Product & { quantity: number })[]>([]);
 
     // Fetch data from Sanity
     useEffect(() => {
         const fetchData = async () => {
             const query = `*[_type == "product"] {
-    _id,
-    title,
-    description,
-    productImage,
-    price,
-    tags,
-    dicountPercentage,
-    isNew,
-    slug
-}`;
+                _id,
+                title,
+                description,
+                productImage,
+                price,
+                tags,
+                dicountPercentage,
+                isNew,
+                slug
+            }`;
 
-            const data: Product[] = await client.fetch(query);
+            const data: Product[] = await client.fetch(query); // Replace `client` with your Sanity client instance
             setSanityData(data);
         };
 
@@ -48,18 +48,29 @@ const Page = () => {
 
     // Load cart items from localStorage
     useEffect(() => {
-        const savedCart = JSON.parse(localStorage.getItem("cart") || "[]") as string[]; // Assuming _id is string
-        const items = savedCart.map((id) => sanityData.find((p) => p._id === id)).filter(Boolean) as Product[];
+        const savedCart: { id: string; quantity: number }[] = JSON.parse(localStorage.getItem("cart") || "[]");
+        const items = savedCart
+            .map((cartItem) => {
+                const product = sanityData.find((p) => p._id === cartItem.id);
+                if (product) {
+                    return { ...product, quantity: cartItem.quantity };
+                }
+                return null;
+            })
+            .filter((item): item is Product & { quantity: number } => Boolean(item));
         setCartItems(items);
     }, [sanityData]);
 
-    const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
+    // Calculate total price
+    const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+    // Clear cart and confirm order
     const clearCart = () => {
         setCartItems([]);
         localStorage.removeItem("cart");
         alert("Your order has been placed!");
     };
+
     return (
         <div className='max-w-[1440px] mx-auto overflow-hidden'>
 
@@ -166,7 +177,7 @@ const Page = () => {
                                                 <span className="font-[400] text-[16px] leading-[24px] text-[#9F9F9F]">{item.title}</span>
                                             </td>
                                             <td className="pl-[50px] py-4 font-[400] text-[16px] leading-[24px] text-black">
-                                                Rs. {item.price}
+                                                Rs. {item.price * item.quantity}
                                             </td>
                                         </tr>
                                     ))}
@@ -174,7 +185,7 @@ const Page = () => {
                                 <tfoot>
                                     <tr className="border-t">
                                         <td className="px-[10px] py-4 font-[400] text-[24px] leading-[38px] text-black">Total</td>
-                                        <td className="px-[10px] py-4 font-[700] text-[22px] sm:text-[24px] leading-[38px] text-[#B88E2F]">Rs. {totalPrice}</td>
+                                        <td className="px-[10px] py-4 font-[700] text-[22px] sm:text-[24px] leading-[38px] text-[#B88E2F]">Rs. {totalPrice }</td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -191,7 +202,7 @@ const Page = () => {
 
                         <h1 className="font-[300] text-[16px] leading-6 text-[#9F9F9F] text-justify">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</h1>
 
-                       
+
 
                         <h1 className="font-[300] text-[16px] leading-6 text-[#000000] text-justify">Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <span className="font-bold">privacy policy.</span></h1>
 

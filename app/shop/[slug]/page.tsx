@@ -21,11 +21,12 @@ interface Product {
     productImage: string;
     slug: { current: string };
     isNew: boolean,
+    quantity: number;
 }
 
 interface PageProps {
     params: {
-        slug: string; // Specify the type of slug
+        slug: string;
     };
 }
 
@@ -54,11 +55,25 @@ const Page = ({ params }: PageProps) => {
     }, [params.slug]);
 
     const addToCart = (id: string) => {
+        // Retrieve the cart from localStorage or initialize it as an empty array
         const savedCart = JSON.parse(localStorage.getItem('cart') || '[]');
-        const updatedCart = [...savedCart, id];
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-        alert('Product added to cart!');
+    
+        // Check if the product already exists in the cart
+        const existingProductIndex = savedCart.findIndex((item: { id: string; quantity: number }) => item.id === id);
+    
+        if (existingProductIndex !== -1) {
+            // If the product exists, increase its quantity
+            savedCart[existingProductIndex].quantity += 1;
+            localStorage.setItem('cart', JSON.stringify(savedCart));
+            alert('Product quantity increased!');
+        } else {
+            // If the product does not exist, add it to the cart with quantity 1
+            savedCart.push({ id, quantity: 1 });
+            localStorage.setItem('cart', JSON.stringify(savedCart));
+            alert('Product added to cart!');
+        }
     };
+    
 
     if (!productData) {
         return <div className="text-center py-20">Product not found</div>;
@@ -163,7 +178,7 @@ const Page = ({ params }: PageProps) => {
                         <div className="flex flex-col justify-start items-start gap-2">
                             <h1 className="font-[400] text-[16px] leading-[24px] text-[#9F9F9F]">SS001</h1>
                             <h1 className="font-[400] text-[16px] leading-[24px] text-[#9F9F9F]">Sofas</h1>
-                            <h1 className="font-[400] text-[16px] leading-[24px] text-[#9F9F9F]">Sofa, Chair, Home, Shop</h1>
+                            <h1 className="font-[400] text-[16px] leading-[24px] text-[#9F9F9F]">{productData.tags}</h1> 
                             <h1 className="font-[400] text-[16px] leading-[24px] text-[#000000] flex justify-center items-center gap-[12px]">
                                 <FaFacebook />
                                 <FaLinkedin />

@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,8 +15,9 @@ interface Product {
     productImage: string;
     slug: { current: string };
     isNew: boolean;
+    quantity: number;
 }
-
+ 
 interface ItemProps {
     searchQuery: string;
 }

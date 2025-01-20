@@ -21,29 +21,30 @@ interface Product {
     productImage: string;
     slug: { current: string };
     isNew: boolean,
+    quantity: number;
 }
 
 
 export default function CartPage() {
     const [sanityData, setSanityData] = useState<Product[]>([]);
-    const [cart, setCart] = useState<string[]>([]); // Update cart type to `string[]` for `_id`
-    const [cartItems, setCartItems] = useState<Product[]>([]);
+    const [cart, setCart] = useState<{ id: string; quantity: number }[]>([]);
+    const [cartItems, setCartItems] = useState<(Product & { quantity: number })[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
             const query = `*[_type == "product"] {
-    _id,
-    title,
-    description,
-    productImage,
-    price,
-    tags,
-    dicountPercentage,
-    isNew,
-    slug
-}`;
+                _id,
+                title,
+                description,
+                productImage,
+                price,
+                tags,
+                dicountPercentage,
+                isNew,
+                slug
+            }`;
 
-            const data: Product[] = await client.fetch(query); // Specify type of `data`
+            const data: Product[] = await client.fetch(query); // Replace `client` with your actual Sanity client
             setSanityData(data);
         };
 
@@ -51,23 +52,54 @@ export default function CartPage() {
     }, []);
 
     useEffect(() => {
-        const savedCart: string[] = JSON.parse(localStorage.getItem("cart") || "[]");
+        const savedCart: { id: string; quantity: number }[] = JSON.parse(localStorage.getItem("cart") || "[]");
         setCart(savedCart);
 
         const items = savedCart
-            .map((id) => sanityData.find((p) => p._id === id))
-            .filter((item): item is Product => Boolean(item)); // Type guard to ensure `Product[]`
+            .map((cartItem) => {
+                const product = sanityData.find((p) => p._id === cartItem.id);
+                if (product) {
+                    return { ...product, quantity: cartItem.quantity };
+                }
+                return null;
+            })
+            .filter((item): item is Product & { quantity: number } => Boolean(item)); // Type guard
         setCartItems(items);
     }, [sanityData]);
 
-    const removeFromCart = (id: string) => {
-        const updatedCart = cart.filter((productId) => productId !== id);
+    const updateQuantity = (id: string, quantity: number) => {
+        const updatedCart = cart.map((item) =>
+            item.id === id ? { ...item, quantity: Math.max(quantity, 1) } : item
+        );
         setCart(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
 
         const updatedItems = updatedCart
-            .map((id) => sanityData.find((p) => p._id === id))
-            .filter((item): item is Product => Boolean(item));
+            .map((cartItem) => {
+                const product = sanityData.find((p) => p._id === cartItem.id);
+                if (product) {
+                    return { ...product, quantity: cartItem.quantity };
+                }
+                return null;
+            })
+            .filter((item): item is Product & { quantity: number } => Boolean(item));
+        setCartItems(updatedItems);
+    };
+
+    const removeFromCart = (id: string) => {
+        const updatedCart = cart.filter((item) => item.id !== id);
+        setCart(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+        const updatedItems = updatedCart
+            .map((cartItem) => {
+                const product = sanityData.find((p) => p._id === cartItem.id);
+                if (product) {
+                    return { ...product, quantity: cartItem.quantity };
+                }
+                return null;
+            })
+            .filter((item): item is Product & { quantity: number } => Boolean(item));
         setCartItems(updatedItems);
     };
 
@@ -77,8 +109,7 @@ export default function CartPage() {
         localStorage.removeItem("cart");
     };
 
-    const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
-
+    const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     return (
         <div className="max-w-[1440px] mx-auto overflow-hidden">
@@ -94,42 +125,57 @@ export default function CartPage() {
                 </div>
             </div>
 
-            <div className="flex flex-col custom:flex-row justify-between items-start lg:items-center custom:items-start mx-4 lg:mx-[100px] my-[56px] gap-8 lg:gap-0">
+            <div className="flex flex-col custom:flex-row justify-between items-start lg:items-center custom:items-start mx-4 lg:mx-[100px] lg:gap-5 my-[56px] gap-8 xl:gap-0">
                 <div className="flex flex-col justify-start items-center gap-[56px] w-full lg:w-auto">
                     {cartItems.length > 0 ? (
-                        <table className="w-full lg:w-[817px] table-auto bg-[#F9F1E7] rounded-lg">
-                            <thead>
-                                <tr className="h-[55px] bg-[#F9F1E7] rounded-lg text-left">
-                                    <th className="px-[30px] py-2 font-[500] text-[16px] leading-6">Product</th>
-                                    <th className="px-[30px] py-2 font-[500] text-[16px] leading-6">Price</th>
-                                    <th className="px-[30px] py-2 font-[500] text-[16px] leading-6">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {cartItems.map((item) => (
-                                    <tr key={item._id} className="border-t">
-                                        <td className="flex flex-col md:flex-row items-center gap-2 px-[30px] py-4">
-                                            <Image
-                                                src={urlFor(item.productImage).url()}
-                                                alt={item.title}
-                                                width={70}
-                                                height={70}
-                                                className="w-[70px] h-[70px] rounded-lg object-cover"
-                                            />
-                                            <span className="font-[400] text-[16px] leading-[24px] text-[#9F9F9F]">{item.title}</span>
-                                        </td>
-                                        <td className="px-[30px] py-4 font-[500] text-[16px] leading-6 text-[#9F9F9F]">
-                                            Rs. {item.price}
-                                        </td>
-                                        <td className="pl-[50px] py-4">
-                                            <button onClick={() => removeFromCart(item._id)} className='flex justify-center items-center'>
-                                                <RiDeleteBinLine className="text-[#B88E2F] scale-150 hover:text-red-700 duration-300 ease-in-out hover:scale-[2]" />
-                                            </button>
-                                        </td>
+                        <div className="overflow-x-auto w-full">
+                            <table className="w-full lg:w-[817px] table-auto bg-[#F9F1E7] rounded-lg">
+                                <thead>
+                                    <tr className="h-[55px] bg-[#F9F1E7] rounded-lg text-left">
+                                        <th className="px-2 sm:px-4 lg:px-[30px] py-2 font-[500] text-[14px] lg:text-[16px] leading-6">Product</th>
+                                        <th className="px-2 sm:px-4 lg:px-[30px] py-2 font-[500] text-[14px] lg:text-[16px] leading-6">Quantity</th>
+                                        <th className="px-2 sm:px-4 lg:px-[30px] py-2 font-[500] text-[14px] lg:text-[16px] leading-6">Price</th>
+                                        <th className="px-2 sm:px-4 lg:px-[30px] py-2 font-[500] text-[14px] lg:text-[16px] leading-6">Actions</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {cartItems.map((item) => (
+                                        <tr key={item._id} className="border-t">
+                                            <td className="flex flex-col md:flex-row items-start md:items-center gap-2 px-2 sm:px-4 lg:px-[30px] py-4">
+                                                <Image
+                                                    src={urlFor(item.productImage).url()}
+                                                    alt={item.title}
+                                                    width={70}
+                                                    height={70}
+                                                    className="w-[70px] h-[70px] rounded-lg object-cover border border-[#9F9F9F]"
+                                                />
+                                                <span className="font-[400] text-[14px] lg:text-[16px] leading-[24px] text-[#9F9F9F]">
+                                                    {item.title}
+                                                </span>
+                                            </td>
+                                            <td className="px-2 sm:px-4 lg:px-[30px] py-4 font-[500] text-[14px] lg:text-[16px] leading-6 text-[#9F9F9F]">
+                                                <input
+                                                    type="number"
+                                                    value={item.quantity}
+                                                    min={1}
+                                                    onChange={(e) => updateQuantity(item._id, parseInt(e.target.value))}
+                                                    className="py-2 w-16 lg:w-20 bg-[#f9f1e7] border border-black/40 flex justify-center items-center rounded-md px-2"
+                                                />
+                                            </td>
+                                            <td className="px-2 sm:px-4 lg:px-[30px] py-4 font-[500] text-[14px] lg:text-[16px] leading-6 text-[#9F9F9F]">
+                                                Rs. {item.price * item.quantity}
+                                            </td>
+                                            <td className="px-2 sm:px-4 lg:pl-[50px] py-4">
+                                                <button onClick={() => removeFromCart(item._id)} className="flex justify-center items-center">
+                                                    <RiDeleteBinLine className="text-[#B88E2F] scale-150 hover:text-red-700 hover:shadow-red-700 shadow-lg rounded-sm hover:rotate-12 duration-300 ease-in-out hover:scale-[2]" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
                     ) : (
                         <p className="text-center">Your cart is empty !</p>
                     )}
@@ -194,3 +240,4 @@ export default function CartPage() {
 
     );
 }
+
