@@ -1,0 +1,11 @@
+﻿Test Case ID,Test Case Description,Test Steps:,Expected Result:,Actual Result,Status,Severity Level,Remarks
+TC001,Test Api Error Handling,Wrote wrong Query > Reload,Show Fallback Message,Show Fallback Message,Passed,Medium,Handled easily
+TC002,Check Cart Functions,Add item to cart > Verify Cart,Cart updates,Updates as expected,Passed,High,As expected
+TC003,Responsiveness,Inspect > Toggle Device Simulation,Adjustable as screen sizes,Works as expected,Passed,Medium,Successful
+TC004,Verify search functionality,Homepage > Search >  Bed,Bed displayed,Expected,Passed,High,Successful
+TC005,Verify checkout process,Add Item > Cart > Checkout > Place order,Clear cart and order message,Expected,Passed,Medium,Successful
+TC006,Search functionality Fallback msg,Homepage > Search >  Bed,Item not found,Item not found,Passed,High,Expected
+,,,,,,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
