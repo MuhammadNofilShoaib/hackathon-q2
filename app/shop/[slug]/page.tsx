@@ -178,11 +178,7 @@ const Page = ({ params }: PageProps) => {
                         <div className="flex flex-col justify-start items-start gap-2">
                             <h1 className="font-[400] text-[16px] leading-[24px] text-[#9F9F9F]">SS001</h1>
                             <h1 className="font-[400] text-[16px] leading-[24px] text-[#9F9F9F]">Sofas</h1>
-<<<<<<< HEAD
-                            <h1 className="font-[400] text-[16px] leading-[24px] text-[#9F9F9F]">{productData.tags}</h1> 
-=======
                             <h1 className="font-[400] text-[16px] leading-[24px] text-[#9F9F9F]">{productData.tags}</h1>
->>>>>>> cdbd8b94a23283c09ebe6a56d03f3e6db80b2609
                             <h1 className="font-[400] text-[16px] leading-[24px] text-[#000000] flex justify-center items-center gap-[12px]">
                                 <FaFacebook />
                                 <FaLinkedin />
