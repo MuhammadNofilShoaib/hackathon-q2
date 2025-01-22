@@ -1,0 +1,7 @@
+﻿Metric,Test Scenario,Measured Value,Expected Value,Status,Notes
+Page Load Time,Home page load at 5 Mbps,1.7 seconds,< 2 seconds,Pass,Optimized images using Next.js Image tag
+API Response Time,Fetch products data,280 ms,< 500 ms,Pass,Used Sanity for efficient queries
+Cart Actions Time,Add/Remove item in cart,200 ms,< 300 ms,Pass,Implemented debounce for better UX
+SEO Score (Lighthouse),Homepage,97,> 90,Pass,Metadata and alt text are in place
+Accessibility Score,Homepage,94,> 90,Pass,Color contrast and focus states verified
+Mobile Responsiveness,Browse site on mobile,Fully responsive,Fully responsive,Pass,Tested on different screen sizes
