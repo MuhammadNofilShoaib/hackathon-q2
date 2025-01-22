@@ -1,0 +1,20 @@
+﻿Test Case ID,Test Scenario,Steps to Execute,Expected Results,Actual Results,Status,Notes
+TC001,Product Display,1. Navigate to the home page,Product details page opens with accurate information,Displayed product information correctly,Pass,Verified responsiveness across devices
+,,2. Scroll to the featured products section,,,,
+,,3. Click on a product,,,,
+TC002,Add to Cart,1. Open a product detail page,Product is added to the cart with correct quantity & price,Product added to cart successfully,Pass,Ensure button click animation is smooth
+,,2. Click 'Add to Cart',,,,
+,,3. View the cart page,,,,
+TC003,Remove from Cart,1. Go to the cart page,Product is removed from the cart,Product removed as expected,Pass,Tested with multiple items in the cart
+,,2. Click the 'Remove' button for a product,,,,
+TC004,Search Functionality,1. Use the search bar,Search results display relevant products,Displayed correct products,Pass,Check autocomplete and error handling
+,,"2. Search for a product (e.g., ""Table"")",,,,
+TC005,Checkout Functionality,1. Add products to cart,Order is successfully placed with cleard cart,Cart cleared,Pass,Tested multiple times
+,,2. Proceed to checkout,,,,
+,,3. Fill in required details,,,,
+,,4. Confirm order,,,,
+TC006,Invalid search,1. Use the search bar,Fallback Msg: Product not found,Fallback Msg: Product not found,Pass,Ensure button click animation is smooth
+,,"2. Search For a invalid product (e.g., ""hks"")",,,,
+,,3. Error message (Product Not found),,,,
+TC007,Cart Quantity Update,1. Add a product to the cart,Cart updates to reflect the correct quantity and total price,Quantity updated successfully,Pass, Tested with minimum and maximum quantities
+,,2. Change the quantity on the cart page,,,,
